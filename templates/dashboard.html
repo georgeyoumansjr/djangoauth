@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Your head content here -->
+</head>
+<body>
+    <!-- Dashboard content -->
+    <h1>Welcome to Your Dashboard</h1>
+    <!-- Logout link -->
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>
+Navbar or Header:
+
+Another common location for a "Logout" link is in a site's navigation bar or header. This makes it easily accessible from any page on the site.
+
+Example template (base.html with a navbar):
+
+html
+Copy code
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Your head content here -->
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/profile/">Profile</a></li>
+            {% if user.is_authenticated %}
+                <!-- Logout link for authenticated users -->
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <!-- Page content -->
+    {% block content %}{% endblock %}
+</body>
+</html>
+In this example, the "Logout" link is conditionally displayed for authenticated users.
+
+Login Page with Conditional Logout Link:
+
+On your login page, you can also conditionally display the "Logout" link if the user is already authenticated. This allows users who are already logged in to log out directly from the login page.
+
+Example template (login.html):
+
+html
+Copy code
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Your head content here -->
+</head>
+<body>
+    <h1>Login</h1>
+    <!-- Login form -->
+    <!-- Other login content -->
+    {% if user.is_authenticated %}
+        <!-- Logout link for authenticated users -->
+        <a href="{% url 'logout' %}">Logout</a>
+    {% endif %}
+</body>
+</html>
